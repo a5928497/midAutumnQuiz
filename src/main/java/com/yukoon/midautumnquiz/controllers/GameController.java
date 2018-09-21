@@ -40,4 +40,10 @@ public class GameController {
         favor.setSize(favorService.findAll().size());
         return favor;
     }
+
+    @ResponseBody
+    @GetMapping("/getnextfavor/{order}")
+    public Favor getNextFavor(@PathVariable("order")Integer order) {
+        return favorService.getNextFavor(order);
+    }
 }

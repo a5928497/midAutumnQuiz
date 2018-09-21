@@ -1,6 +1,7 @@
 $(function () {
    var $btns = $("button");
    var puzzleLeft = $("#puzzleSize").val();
+   var favorLeft = -1;
    $btns.click(function () {
       //若有问题剩余，则继续答题
       if (puzzleLeft >0) {
@@ -36,7 +37,8 @@ $(function () {
                           $("#optionD").text(data.optionD);
                           $("#answer").remove();
                           $("#order").val(data.order);
-                          $("#puzzleSize").val(data.size);
+                          $("#puzzleSize").remove();
+                          favorLeft = data.size;
                       }
                   });
               }
@@ -48,9 +50,26 @@ $(function () {
       }
       //若问题答完，则进入喜好测试
       else {
-         alert("喜好测试");
+         favorLeft--;
+         //若爱好问题未完，则继续请求下一个
+         if (favorLeft > 0 ) {
+             var uri = "/getnextfavor/" + $("#order").val();
+             $.get(uri,function (data) {
+                 if (null != data) {
+                     $(".title").text(data.title);
+                     $("#optionA").text(data.optionA);
+                     $("#optionB").text(data.optionB);
+                     $("#optionC").text(data.optionC);
+                     $("#optionD").text(data.optionD);
+                     $("#order").val(data.order);
+                 }
+             });
+         }
+          //若爱好问题已完，跳转到结果
+          if(favorLeft == 0) {
+             alert("跳转到结果")
+          }
       }
-
       return false;
    });
 });
