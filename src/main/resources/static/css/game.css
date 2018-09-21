@@ -3,20 +3,43 @@
     height: 100%;
     background: url("../images/basic-bg.jpg") no-repeat;
     background-size: 100% 100%;
+    position: relative;
+    text-align: center;
 }
 .wrapper > .title {
+    display: inline-block;
     color: rgb(120,58,5);
-    font-size:16px;
-    font-weight: bold;
+    font-size:26px;
+    /*font-weight: bold;*/
+    margin-top: 39%;
+    letter-spacing: 0.1em;
+    /*position: absolute;*/
 }
 .wrapper  button {
+    float: left;
     display: inline-block;
-    width: 45%;
-    height: 8%;
-    background: url("../images/btn_bg.png");
+    width: 46%;
+    height: 9%;
+    background: url("../images/btn_bg.png") no-repeat;
+    background-size: 99% 99%;
     outline: none;
     border-color: transparent;
     color:rgb(120,58,5) ;
-    font-weight: bold;
-    font-size: 26px;
+    /*font-weight: bold;*/
+    font-size: 24px;
+    line-height: 100%;
+    position: absolute;
+    left: 27%;
+}
+.wrapper button:nth-of-type(1) {
+    top:31%;
+}
+.wrapper button:nth-of-type(2) {
+    top:42%;
+}
+.wrapper button:nth-of-type(3) {
+    top:53%;
+}
+.wrapper button:nth-of-type(4) {
+    top:64%;
 }
