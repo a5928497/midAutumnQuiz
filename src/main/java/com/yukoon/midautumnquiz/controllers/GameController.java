@@ -5,6 +5,8 @@ import com.yukoon.midautumnquiz.services.PuzzleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Map;
 
@@ -17,6 +19,13 @@ public class GameController {
     public String toGame(Map<String,Object> map) {
         Puzzle puzzle = puzzleService.findFirst();
         map.put("firstPuzzle",puzzle);
+        map.put("puzzleSize",puzzleService.findAll().size());
         return "public/game";
+    }
+
+    @ResponseBody
+    @GetMapping("/getnextpuzzle/{order}")
+    public Puzzle getNextPuzzle(@PathVariable("order")Integer order) {
+        return puzzleService.getNextPuzzle(order);
     }
 }

@@ -38,7 +38,8 @@ public class PuzzleService {
         return puzzle;
     }
 
-    public List<Puzzle> sort(List<Puzzle> puzzles) {
+    public List<Puzzle> sortAll() {
+        List<Puzzle> puzzles = findAll();
         Collections.sort(puzzles, new Comparator<Puzzle>() {
             @Override
             public int compare(Puzzle o1, Puzzle o2) {
@@ -50,5 +51,16 @@ public class PuzzleService {
             }
         });
         return puzzles;
+    }
+
+    public Puzzle getNextPuzzle(Integer order) {
+        List<Puzzle> puzzles = sortAll();
+        Puzzle puzzle = null;
+        for (int i =0;i<puzzles.size();i++) {
+            if (puzzles.get(i).getOrder() == order) {
+                return puzzles.get(i+1);
+            }
+        }
+        return puzzle;
     }
 }

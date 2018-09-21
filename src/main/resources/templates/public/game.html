@@ -10,12 +10,15 @@
 <body>
     <div class="wrapper">
         <span class="title" th:text="${firstPuzzle.title}"></span>
-        <button type="button" th:text="${firstPuzzle.optionA}"></button>
-        <button type="button" th:text="${firstPuzzle.optionB}"></button>
-        <button type="button" th:text="${firstPuzzle.optionC}"></button>
-        <button type="button" th:text="${firstPuzzle.optionD}"></button>
+        <button id="optionA" type="button" th:text="${firstPuzzle.optionA}"></button>
+        <button id="optionB" type="button" th:text="${firstPuzzle.optionB}"></button>
+        <button id="optionC" type="button" th:text="${firstPuzzle.optionC}"></button>
+        <button id="optionD" type="button" th:text="${firstPuzzle.optionD}"></button>
     </div>
+    <input type="hidden" id="answer" th:value="${firstPuzzle.answer}">
+    <input type="hidden" id="order" th:value="${firstPuzzle.order}">
+    <input type="hidden" id="puzzleSize" th:value="${puzzleSize}">
     <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
-    <!--<script th:src="@{/js/game.js}"></script>-->
+    <script th:src="@{/js/game.js}"></script>
 </body>
 </html>
