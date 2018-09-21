@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import net.sf.ehcache.pool.Size;
 
 import javax.persistence.*;
 
@@ -34,4 +35,7 @@ public class Favor {
 
 	@Column(name = "OPTION_D")
 	private String optionD;
+
+	@Transient
+	private Integer size;
 }

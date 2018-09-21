@@ -8,7 +8,6 @@ $(function () {
           if ($(this).attr("id") == "option" + $("#answer").val()) {
               --puzzleLeft;
               $("#puzzleSize").val(puzzleLeft);
-              alert("你答对了，真棒！");
               //还有下一题，请求下一题
               if (puzzleLeft != 0) {
                   var uri = "/getnextpuzzle/" + $("#order").val();
@@ -25,9 +24,21 @@ $(function () {
                       }
                   });
               }
-              //没有下一题，进入喜好测试
+              //没有下一题，获取第一个喜好测试
               else{
-                 alert("进入喜好测试")
+                  var uri = "/getfirstfavor";
+                  $.get(uri,function (data) {
+                      if (null != data) {
+                          $(".title").text(data.title);
+                          $("#optionA").text(data.optionA);
+                          $("#optionB").text(data.optionB);
+                          $("#optionC").text(data.optionC);
+                          $("#optionD").text(data.optionD);
+                          $("#answer").remove();
+                          $("#order").val(data.order);
+                          $("#puzzleSize").val(data.size);
+                      }
+                  });
               }
           }
           //若选择了错误的答案
