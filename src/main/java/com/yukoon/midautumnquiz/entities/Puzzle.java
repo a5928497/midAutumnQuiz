@@ -37,6 +37,6 @@ public class Puzzle {
     private String optionD;
 
     @Column(name = "ANSWER")
-    private Integer answer;
+    private String answer;
 
 }

@@ -1,8 +1,22 @@
 .wrapper {
     width: 100%;
     height: 100%;
-}
-#oc {
     background: url("../images/basic-bg.jpg") no-repeat;
     background-size: 100% 100%;
+}
+.wrapper > .title {
+    color: rgb(120,58,5);
+    font-size:16px;
+    font-weight: bold;
+}
+.wrapper  button {
+    display: inline-block;
+    width: 45%;
+    height: 8%;
+    background: url("../images/btn_bg.png");
+    outline: none;
+    border-color: transparent;
+    color:rgb(120,58,5) ;
+    font-weight: bold;
+    font-size: 26px;
 }

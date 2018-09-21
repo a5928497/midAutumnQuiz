@@ -9,11 +9,13 @@
 </head>
 <body>
     <div class="wrapper">
-        <canvas id="oc">
-            <span>您的浏览器不支持canvas元素，请您更换浏览器后重新打开</span>
-        </canvas>
+        <span class="title" th:text="${firstPuzzle.title}"></span>
+        <button type="button" th:text="${firstPuzzle.optionA}"></button>
+        <button type="button" th:text="${firstPuzzle.optionB}"></button>
+        <button type="button" th:text="${firstPuzzle.optionC}"></button>
+        <button type="button" th:text="${firstPuzzle.optionD}"></button>
     </div>
     <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
-    <script th:src="@{/js/game.js}"></script>
+    <!--<script th:src="@{/js/game.js}"></script>-->
 </body>
 </html>

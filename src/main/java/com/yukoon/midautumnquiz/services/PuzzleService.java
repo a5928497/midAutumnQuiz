@@ -16,10 +16,26 @@ public class PuzzleService {
     @Autowired
     private PuzzleRepo puzzleRepo;
 
+    //查询所有问题
     @Transactional
     public List<Puzzle> findAll() {
         List<Puzzle> list = puzzleRepo.findAll();
         return list;
+    }
+
+    //查询第一个问题
+    public Puzzle findFirst() {
+        List<Puzzle> list = findAll();
+        Puzzle puzzle = null;
+        if (list.size() >0 && null != list) {
+            puzzle = list.get(0);
+            for (Puzzle tmp : list) {
+                if (tmp.getOrder() < puzzle.getOrder()){
+                    puzzle = tmp;
+                }
+            }
+        }
+        return puzzle;
     }
 
     public List<Puzzle> sort(List<Puzzle> puzzles) {
