@@ -24,7 +24,7 @@ $(function () {
         img.src = img_url;
         img.onload = function () {
             var precent1 = Math.floor(Math.random()*80);
-            var precent2 = 100 - precent1;
+            // var precent2 = 100 - precent1;
             var poetText = "与" + poet + "相似程度为" + precent1 +"%";
             var dynastyText ="举止行为最像" + dynasty + "朝人士";
             drawBg(img);
