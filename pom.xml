@@ -4,7 +4,7 @@
 
 	<groupId>com.yukoon</groupId>
 	<artifactId>midautumnquiz</artifactId>
-	<version>0.0.5-SNAPSHOT</version>
+	<version>0.0.5</version>
 	<packaging>jar</packaging>
 
 	<name>midautumnquiz</name>
@@ -345,7 +345,7 @@
 		<url>https://github.com/a5928497/midautumnquiz.git</url>
 		<connection>scm:git:https://github.com/a5928497/midautumnquiz.git</connection>
 		<developerConnection>scm:git:https://github.com/a5928497/midautumnquiz.git</developerConnection>
-		<tag>0.0.1</tag>
+		<tag>0.0.5</tag>
 	</scm>
 	<distributionManagement>
 		<repository>
