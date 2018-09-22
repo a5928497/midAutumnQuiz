@@ -17,7 +17,7 @@ public class QAController {
     @Autowired
     private FavorService favorService;
 
-    //获取Reward对象
+    //获取对象
     @ModelAttribute
     public void getReward(@RequestParam(value = "id",required = false)Integer id,@RequestParam(value = "type",required = false)Integer type, Map<String,Object> map) {
         //若为修改
@@ -27,7 +27,8 @@ public class QAController {
                 map.put("puzzle",puzzle);
            }
            if (type == 2) {
-
+                Favor favor = favorService.findById(id);
+                map.put("favor",favor);
            }
         }
     }
