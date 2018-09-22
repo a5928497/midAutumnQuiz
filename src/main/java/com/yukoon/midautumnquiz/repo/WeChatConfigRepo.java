@@ -9,6 +9,4 @@ import java.util.List;
 
 public interface WeChatConfigRepo extends JpaRepository<WeChatConfig,Integer>{
 
-    @Query("select w from WeChatConfig w where w.act_id = :act_id")
-    public List<WeChatConfig> findByAct_id(@Param("act_id") Integer act_id);
 }

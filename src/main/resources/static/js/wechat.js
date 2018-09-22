@@ -6,9 +6,7 @@ $(function () {
     var pathName=window.document.location.pathname;
     var pos=curWwwPath.indexOf(pathName);
     var localhostPaht=curWwwPath.substring(0,pos);
-    var gameInfo_id = $("#gameInfoId").val();
-    var act_id = $("#act_id").val();
-    $("#share_img").attr("src",localhostPaht+"/share_images/share"+ act_id +".png");
+    $("#share_img").attr("src",localhostPaht+"/share_images/share.png");
     Share();
     function Share() {
         var title;
@@ -19,7 +17,7 @@ $(function () {
             url : "/getwechatconfig",
             dataType : "json",
             async : false,
-            data:{url:url,gameInfo_id:gameInfo_id},
+            data:{url:url},
             success : function(data) {
                 //配置信息
                 wx.config({
@@ -44,7 +42,7 @@ $(function () {
         wx.ready(function () {
             // 微信分享的数据
             var shareData = {
-                "imgUrl" : localhostPaht+"/share_images/share"+ act_id +".png",    // 分享显示的缩略图地址
+                "imgUrl" : localhostPaht+"/share_images/share.png",    // 分享显示的缩略图地址
                 "link" : url,    // 分享地址
                 "desc" : desc,   // 分享描述
                 "title" : title,   // 分享标题
