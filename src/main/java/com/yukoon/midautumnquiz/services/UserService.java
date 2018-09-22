@@ -30,4 +30,8 @@ public class UserService {
 	public void save(User user) {
 		userRepo.saveAndFlush(user);
 	}
+
+	public User getUser() {
+		return userRepo.findOne(1);
+	}
 }
