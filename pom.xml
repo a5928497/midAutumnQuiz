@@ -176,18 +176,18 @@
 					<include>**/*.yml</include>
 					<include>**/*.xml</include>
 				</includes>
-				<!--<excludes>-->
-					<!--<exclude>application.yml</exclude>-->
-					<!--<exclude>pathconfig.yml</exclude>-->
-				<!--</excludes>-->
+				<excludes>
+					<exclude>application.yml</exclude>
+					<exclude>pathconfig.yml</exclude>
+				</excludes>
 			</resource>
-			<!--<resource>-->
-				<!--<directory>src/main/prod_resources</directory>-->
-				<!--<includes>-->
-					<!--<include>application.yml</include>-->
-					<!--<include>pathconfig.yml</include>-->
-				<!--</includes>-->
-			<!--</resource>-->
+			<resource>
+				<directory>src/main/prod_resources</directory>
+				<includes>
+					<include>application.yml</include>
+					<include>pathconfig.yml</include>
+				</includes>
+			</resource>
 		</resources>
 		<plugins>
 			<plugin>
@@ -200,7 +200,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib</classpathPrefix>
-							<mainClass>com.yukoon.bargain.MidautumnquizApplication</mainClass>
+							<mainClass>com.yukoon.midautumnquiz.MidautumnquizApplication</mainClass>
 						</manifest>
 					</archive>
 					<excludes>
@@ -346,7 +346,7 @@
 		<url>https://github.com/a5928497/midautumnquiz.git</url>
 		<connection>scm:git:https://github.com/a5928497/midautumnquiz.git</connection>
 		<developerConnection>scm:git:https://github.com/a5928497/midautumnquiz.git</developerConnection>
-		<tag>0.0.106</tag>
+		<tag>0.0.1</tag>
 	</scm>
 	<distributionManagement>
 		<repository>
