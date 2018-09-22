@@ -51,9 +51,11 @@ public class GameController {
         return favorService.getNextFavor(order);
     }
 
-    @ResponseBody
+
     @GetMapping("/getresult/{belongTo}")
-    public Result getResult(@PathVariable("belongTo")Integer belongTo) {
-        return resultService.getRandomResultByBelongTo(belongTo);
+    public String getResult(@PathVariable("belongTo")Integer belongTo,Map<String,Object> map) {
+        Result result =  resultService.getRandomResultByBelongTo(belongTo);
+        map.put("result",result);
+        return "public/result";
     }
 }

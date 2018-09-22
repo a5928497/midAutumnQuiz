@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/reset.css}" rel="stylesheet">
+    <!--<link th:href="@{/css/index.css}" rel="stylesheet">-->
+    <title>测试结果</title>
+</head>
+<body>
+    <div class="wrapper">
+        <canvas id="oc">
+            <span>您的浏览器不支持该功能，请更换浏览器重试!</span>
+        </canvas>
+    </div>
+    <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script th:src="@{/js/result.js}"></script>
+</body>
+</html>

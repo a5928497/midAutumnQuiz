@@ -11,6 +11,6 @@ public class BasicController {
 	}
 	@GetMapping("/test")
 	public String test() {
-		return "public/game";
+		return "public/result";
 	}
 }
