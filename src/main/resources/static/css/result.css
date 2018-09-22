@@ -1,0 +1,25 @@
+.wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.wrapper canvas {
+    position: absolute;
+}
+.wrapper  button {
+    float: left;
+    display: inline-block;
+    width: 46%;
+    height: 9%;
+    background: url("../images/btn_bg.png") no-repeat;
+    background-size: 99% 99%;
+    outline: none;
+    border-color: transparent;
+    color:rgb(120,58,5) ;
+    /*font-weight: bold;*/
+    font-size: 24px;
+    line-height: 100%;
+    position: absolute;
+    left: 27%;
+    top: 85%;
+}

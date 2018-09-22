@@ -2,9 +2,11 @@ package com.yukoon.midautumnquiz.controllers;
 
 import com.yukoon.midautumnquiz.entities.Favor;
 import com.yukoon.midautumnquiz.entities.Puzzle;
+import com.yukoon.midautumnquiz.entities.Record;
 import com.yukoon.midautumnquiz.entities.Result;
 import com.yukoon.midautumnquiz.services.FavorService;
 import com.yukoon.midautumnquiz.services.PuzzleService;
+import com.yukoon.midautumnquiz.services.RecordService;
 import com.yukoon.midautumnquiz.services.ResultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,8 @@ public class GameController {
     private FavorService favorService;
     @Autowired
     private ResultService resultService;
+    @Autowired
+    private RecordService recordService;
 
     @GetMapping("/togame")
     public String toGame(Map<String,Object> map) {
@@ -53,8 +57,15 @@ public class GameController {
 
 
     @GetMapping("/getresult/{belongTo}")
-    public String getResult(@PathVariable("belongTo")Integer belongTo,Map<String,Object> map) {
+    public String getResult(@PathVariable("belongTo")Integer belongTo) {
         Result result =  resultService.getRandomResultByBelongTo(belongTo);
+        Record record = recordService.save(result);
+        return "redirect:/record/" + record.getId();
+    }
+
+    @GetMapping("/record/{id}")
+    public String toRecord(@PathVariable("id")Integer id,Map<String,Object> map) {
+        Result result = recordService.findById(id).getResult();
         map.put("result",result);
         return "public/result";
     }

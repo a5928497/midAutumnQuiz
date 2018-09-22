@@ -50,4 +50,9 @@ $(function () {
             ctx.fillText(text,x,boxHeight*0.83);
         }
     }
+
+    $("button").click(function () {
+        window.location.replace(localhostPaht);
+       return false;
+    });
 });
