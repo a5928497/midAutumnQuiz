@@ -24,6 +24,7 @@ public class WeChatController {
         //若为修改
         if (id !=null) {
             ShareInfo shareInfo = shareInfoService.find();
+            map.put("shareInfo",shareInfo);
         }
     }
 

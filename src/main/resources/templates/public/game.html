@@ -10,10 +10,10 @@
 <body>
     <div class="wrapper">
         <span class="title" th:text="${firstPuzzle.title}"></span>
-        <button id="optionA" type="button" th:text="${firstPuzzle.optionA}"></button>
-        <button id="optionB" type="button" th:text="${firstPuzzle.optionB}"></button>
-        <button id="optionC" type="button" th:text="${firstPuzzle.optionC}"></button>
-        <button id="optionD" type="button" th:text="${firstPuzzle.optionD}"></button>
+        <button th:attr="sign =@{1}" id="optionA" type="button" th:text="${firstPuzzle.optionA}"></button>
+        <button th:attr="sign =@{2}" id="optionB" type="button" th:text="${firstPuzzle.optionB}"></button>
+        <button th:attr="sign =@{3}" id="optionC" type="button" th:text="${firstPuzzle.optionC}"></button>
+        <button th:attr="sign =@{4}" id="optionD" type="button" th:text="${firstPuzzle.optionD}"></button>
     </div>
     <input type="hidden" id="answer" th:value="${firstPuzzle.answer}">
     <input type="hidden" id="order" th:value="${firstPuzzle.order}">

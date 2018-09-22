@@ -2,8 +2,10 @@ package com.yukoon.midautumnquiz.controllers;
 
 import com.yukoon.midautumnquiz.entities.Favor;
 import com.yukoon.midautumnquiz.entities.Puzzle;
+import com.yukoon.midautumnquiz.entities.Result;
 import com.yukoon.midautumnquiz.services.FavorService;
 import com.yukoon.midautumnquiz.services.PuzzleService;
+import com.yukoon.midautumnquiz.services.ResultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +20,8 @@ public class GameController {
     private PuzzleService puzzleService;
     @Autowired
     private FavorService favorService;
+    @Autowired
+    private ResultService resultService;
 
     @GetMapping("/togame")
     public String toGame(Map<String,Object> map) {
@@ -45,5 +49,11 @@ public class GameController {
     @GetMapping("/getnextfavor/{order}")
     public Favor getNextFavor(@PathVariable("order")Integer order) {
         return favorService.getNextFavor(order);
+    }
+
+    @ResponseBody
+    @GetMapping("/getresult/{belongTo}")
+    public Result getResult(@PathVariable("belongTo")Integer belongTo) {
+        return resultService.getRandomResultByBelongTo(belongTo);
     }
 }

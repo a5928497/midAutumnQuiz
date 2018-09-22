@@ -67,6 +67,7 @@ $(function () {
          }
           //若爱好问题已完，跳转到结果
           if(favorLeft == 0) {
+             var sign = $(this).attr("sign");
              alert("跳转到结果")
           }
       }
