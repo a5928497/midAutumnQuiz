@@ -68,7 +68,13 @@ $(function () {
           //若爱好问题已完，跳转到结果
           if(favorLeft == 0) {
              var sign = $(this).attr("sign");
-             alert("跳转到结果")
+              //完整路径
+              var curWwwPath=window.document.location.href;
+              //后缀
+              var pathName=window.document.location.pathname;
+              //前缀
+              var localhostPaht=curWwwPath.substring(0,curWwwPath.indexOf(pathName));
+              window.location.replace(localhostPaht + "/getresult/" + sign);
           }
       }
       return false;

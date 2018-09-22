@@ -16,7 +16,7 @@ public class ResultService {
     public Result getRandomResultByBelongTo(Integer belongTo) {
         Random random = new Random();
         List<Result> list = resultRepo.findByBelongTo(belongTo);
-        return list.get(random.nextInt(list.size()+1));
+        return list.get(random.nextInt(list.size()));
     }
 
     public List<Result> findAll() {
