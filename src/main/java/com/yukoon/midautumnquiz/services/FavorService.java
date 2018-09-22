@@ -15,6 +15,23 @@ public class FavorService {
 	@Autowired
 	private FavorRepo favorRepo;
 
+	//删除
+	@Transactional
+	public void delete(Integer id){
+		favorRepo.delete(id);
+	}
+
+	//保存favor
+	@Transactional
+	public void save(Favor favor) {
+		favorRepo.saveAndFlush(favor);
+	}
+
+	//查找favor
+	public Favor findById(Integer id) {
+		return favorRepo.findOne(id);
+	}
+
 	//查询所有爱好问题
 	@Transactional
 	public List<Favor> findAll() {

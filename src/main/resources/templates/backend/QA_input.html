@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reward</title>
+
+    <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/iCheck/1.0.2/skins/green.css}" rel="stylesheet">
+    <link th:href="@{/css/commons/animate.min.css}" rel="stylesheet">
+    <link th:href="@{/css/commons/style.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/awesome-bootstrap-checkbox/1.0.0/awesome-bootstrap-checkbox.css}" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+        <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+        </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>编辑</h2>
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>问答编辑</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <form action="/addpuzzle" method="post" modelAttribute="puzzle" id="inputForm" class="form-horizontal">
+                                <div class="form-group"><label class="col-sm-2 control-label">类型</label>
+                                    <div class="col-sm-10"><select id="select" class="form-control m-b" name="type" th:disabled="${puzzle != null || favor != null}?''">
+                                        <option value="1" th:if="${puzzle==null}">灯谜</option>
+                                        <option value="1" id="puzzle_option" th:if="${puzzle!=null}">灯谜</option>
+                                        <option value="2" id="favor_option" th:if="${favor!=null}">喜好</option>
+                                        <option value="2" th:if="${favor==null}">喜好</option>
+                                    </select>
+                                    </div>
+                                </div>
+                                <div class="form-group"><label class="col-sm-2 control-label">标题</label>
+                                    <div class="col-sm-10"><input name="title"  type="text" class="form-control" th:value="${puzzle!=null}?${puzzle.title}" th:if="${puzzle!=null}"></div>
+                                    <div class="col-sm-10"><input name="title"  type="text" class="form-control" th:value="${favor!=null}?${favor.title}" th:if="${favor!=null}"></div>
+                                    <div class="col-sm-10"><input name="title"  type="text" class="form-control" th:if="${puzzle==null && favor ==null}"></div>
+                                </div>
+                                <div class="form-group"><label class="col-sm-2 control-label">A选项</label>
+                                    <div class="col-sm-10"><input name="optionA" type="text" class="form-control" th:value="${puzzle!=null}?${puzzle.optionA}" th:if="${puzzle!=null}"></div>
+                                    <div class="col-sm-10"><input name="optionA" type="text" class="form-control" th:value="${favor!=null}?${favor.optionA}" th:if="${favor!=null}"></div>
+                                    <div class="col-sm-10"><input name="optionA" type="text" class="form-control" th:if="${puzzle==null && favor ==null}"></div>
+                                </div>
+                                <div class="form-group"><label class="col-sm-2 control-label">B选项</label>
+                                    <div class="col-sm-10"><input name="optionB" type="text" class="form-control" th:value="${puzzle!=null}?${puzzle.optionB}" th:if="${puzzle!=null}"></div>
+                                    <div class="col-sm-10"><input name="optionB" type="text" class="form-control" th:value="${favor!=null}?${favor.optionB}" th:if="${favor!=null}"></div>
+                                    <div class="col-sm-10"><input name="optionB" type="text" class="form-control" th:if="${puzzle==null && favor ==null}"></div>
+                                </div>
+                                <div class="form-group"><label class="col-sm-2 control-label">C选项</label>
+                                    <div class="col-sm-10"><input name="optionC" type="text" class="form-control" th:value="${puzzle!=null}?${puzzle.optionC}" th:if="${puzzle!=null}"></div>
+                                    <div class="col-sm-10"><input name="optionC" type="text" class="form-control" th:value="${favor!=null}?${favor.optionC}" th:if="${favor!=null}"></div>
+                                    <div class="col-sm-10"><input name="optionC" type="text" class="form-control" th:if="${puzzle==null && favor ==null}"></div>
+                                </div>
+                                <div class="form-group"><label class="col-sm-2 control-label">D选项</label>
+                                    <div class="col-sm-10"><input name="optionD" type="text" class="form-control" th:value="${puzzle!=null}?${puzzle.optionD}" th:if="${puzzle!=null}"></div>
+                                    <div class="col-sm-10"><input name="optionD" type="text" class="form-control" th:value="${favor!=null}?${favor.optionC}" th:if="${favor!=null}"></div>
+                                    <div class="col-sm-10"><input name="optionD" type="text" class="form-control" th:if="${puzzle==null && favor ==null}"></div>
+                                </div>
+                                <div class="form-group answer-group"><label class="col-sm-2 control-label">答案</label>
+                                    <div class="col-sm-10"><input name="answer" type="text" class="form-control" th:value="${puzzle!=null}?${puzzle.answer}" th:if="${puzzle!=null}"></div>
+                                    <div class="col-sm-10"><input name="answer" type="text" class="form-control" th:if="${puzzle==null && favor ==null}"></div>
+                                </div>
+                                <div class="form-group"><label class="col-sm-2 control-label">顺序</label>
+                                    <div class="col-sm-10"><input name="order" type="text" class="form-control" th:value="${puzzle!=null}?${puzzle.order}" th:if="${puzzle!=null}"></div>
+                                    <div class="col-sm-10"><input name="order" type="text" class="form-control" th:value="${favor!=null}?${favor.order}" th:if="${favor!=null}"></div>
+                                    <div class="col-sm-10"><input name="order" type="text" class="form-control" th:if="${puzzle==null && favor ==null}"></div>
+                                </div>
+                                <!--若为修改，加入id-->
+                                <input type="hidden" id="puzzle_id" th:name="id" th:value="${puzzle!=null}?${puzzle.id}" th:if="${puzzle!=null}"/>
+                                <input type="hidden" id="favor_id" th:name="id" th:value="${favor!=null}?${favor.id}" th:if="${favor!=null}"/>
+                                <!--若为修改，插入put隐藏域-->
+                                <input type="hidden" th:name="_method" th:value="put" th:if="${puzzle!=null}"/>
+                                <input type="hidden" th:name="_method" th:value="put" th:if="${favor!=null}"/>
+
+
+                                <div class="form-group">
+                                    <div class="col-sm-4 col-sm-offset-2">
+                                        <!--<button th:attr="back_uri = @{/rewards/}+${reward.activity.id}" th:if="${reward!=null}" class="btn btn-white backBTN" >取消</button>-->
+                                        <!--<button th:attr="back_uri = @{/rewards/}+${act_id}" th:if="${reward==null}" class="btn btn-white backBTN" >取消</button>-->
+                                        <button class="btn btn-primary" type="submit">保存</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <input type="hidden" class="type" th:value="1" th:if="${puzzle!=null}"/>
+                            <input type="hidden" class="type" th:value="2" th:if="${favor!=null}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+
+    <!-- Mainly scripts -->
+    <script type="text/javascript" th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/QA_input.js}"></script>
+</body>
+
+</html>

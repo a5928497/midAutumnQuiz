@@ -35,10 +35,15 @@ public class LoginController {
 	public String login(User user, Map<String,Object> map) {
 		boolean result = userService.login(user);
 		if (result) {
-			map.put("puzzles",puzzleService.findAll());
-			map.put("favors",favorService.findAll());
-			return "backend/dashboard";
+			return "redirect:/todashboard";
 		}
 		return "redirect:/backend";
+	}
+
+	@GetMapping("/todashboard")
+	public String toDashboard(Map<String,Object> map) {
+		map.put("puzzles",puzzleService.findAll());
+		map.put("favors",favorService.findAll());
+		return "backend/dashboard";
 	}
 }

@@ -16,6 +16,23 @@ public class PuzzleService {
     @Autowired
     private PuzzleRepo puzzleRepo;
 
+    //删除
+    @Transactional
+    public void delete(Integer id){
+        puzzleRepo.delete(id);
+    }
+
+    //保存puzzle
+    @Transactional
+    public void save(Puzzle puzzle) {
+        puzzleRepo.saveAndFlush(puzzle);
+    }
+
+    //查找puzzle
+    public Puzzle findById(Integer id) {
+        return puzzleRepo.findOne(id);
+    }
+
     //查询所有问题
     @Transactional
     public List<Puzzle> findAll() {

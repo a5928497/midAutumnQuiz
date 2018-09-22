@@ -30,7 +30,7 @@
             </div>
         </div>
         <div class="wrapper wrapper-content animated fadeInRight">
-            <a th:href="@{/allusers}"><button class="btn btn-info">添加题目</button></a>
+            <a th:href="@{/toadd}"><button class="btn btn-info">添加题目</button></a>
             <a th:href="@{/act}"><button class="btn btn-primary">修改账密</button></a>
             <a th:href="@{/allusers}"><button class="btn btn-warning">图片管理</button></a>
             <div class="border"></div>
@@ -68,8 +68,8 @@
                                     <td th:text="${puzzle.answer}">answer</td>
                                     <td th:text="${puzzle.order}">order</td>
                                     <td>
-                                        <a th:href="@{/act/}"><button class="btn btn-sm btn-success">编辑</button></a>
-                                        <a th:href="@{/actclose/}"><button class="btn btn-sm btn-danger" id="deleteBTN">删除</button></a>
+                                        <a th:href="@{/toeditpuzzle/}+${puzzle.id}"><button class="btn btn-sm btn-success">编辑</button></a>
+                                        <button  th:attr="del_uri = @{/puzzle/}+${puzzle.id}" class="btn btn-sm btn-danger deleteBTN">删除</button>
                                     </td>
                                 </tr>
                                 <tr th:each="favor:${favors}">
@@ -82,8 +82,8 @@
                                     <td th:text="无">无</td>
                                     <td th:text="${favor.order}">order</td>
                                     <td>
-                                        <a th:href="@{/act/}"><button class="btn btn-sm btn-success">编辑</button></a>
-                                        <a th:href="@{/actclose/}"><button class="btn btn-sm btn-danger">删除</button></a>
+                                        <a th:href="@{/toeditfavor/}+${favor.id}"><button class="btn btn-sm btn-success">编辑</button></a>
+                                        <button  th:attr="del_uri = @{/favor/}+${favor.id}" class="btn btn-sm btn-danger deleteBTN">删除</button>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -105,6 +105,11 @@
     </div>
 </div>
 
+<!-- delete表单-->
+<form id="deleteForm" method="post">
+    <input type="hidden" name="_method" value="delete">
+</form>
+
 <!-- Mainly scripts -->
 <script type="text/javascript" th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
 <script type="text/javascript" th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
@@ -112,6 +117,18 @@
 <script>
     $border = $(".border");
     $border.css("height",10);
+
+    $deleteBTNs = $(".deleteBTN")
+    $deleteForm = $("#deleteForm");
+    $border = $(".border");
+    $border.css("height",10);
+    $deleteBTNs.click(function () {
+        var isok = confirm("确定删除吗？");
+        if (isok) {
+            $deleteForm.attr("action",$(this).attr("del_uri")).submit();
+        }
+        return false;
+    });
 </script>
 
 </body>
