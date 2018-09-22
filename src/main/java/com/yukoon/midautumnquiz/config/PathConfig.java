@@ -26,6 +26,10 @@ public class PathConfig extends WebMvcConfigurerAdapter {
 	@Setter
 	@Value("${shareImgPath}")
 	private String shareImgPath;
+	@Getter
+	@Setter
+	@Value("${poetImgPath}")
+	private String poetImgPath;
 	@Resource(name="thymeleafViewResolver")
 	private ThymeleafViewResolver thymeleafViewResolver;
 
@@ -34,6 +38,7 @@ public class PathConfig extends WebMvcConfigurerAdapter {
 		if (thymeleafViewResolver != null) {
 			Map<String,Object> map = new HashMap<>();
 			map.put("shareImgPath",shareImgPath);
+			map.put("poetImgPath",poetImgPath);
 			thymeleafViewResolver.setStaticVariables(map);
 		}
 		super.configureViewResolvers(registry);
@@ -43,6 +48,7 @@ public class PathConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/share_images/**").addResourceLocations("file:"+shareImgPath);
+		registry.addResourceHandler("/poet_images/**").addResourceLocations("file:"+poetImgPath);
         super.addResourceHandlers(registry);
     }
 

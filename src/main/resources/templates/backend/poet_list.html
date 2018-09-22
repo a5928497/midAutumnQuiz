@@ -58,6 +58,7 @@
                                     <td th:text="${poet.belongTo}">belongTo</td>
                                     <td>
                                         <a th:href="@{/poet/}+${poet.id}" ><button class="btn btn-sm btn-warning">编辑</button></a>
+                                        <a th:href="@{/poetimg/}+${poet.id}" ><button class="btn btn-sm btn-success">诗人图片</button></a>
                                         <button  th:attr="del_uri = @{/poet/}+${poet.id}" class="btn btn-sm btn-danger deleteBTN">删除</button>
                                     </td>
                                 </tr>

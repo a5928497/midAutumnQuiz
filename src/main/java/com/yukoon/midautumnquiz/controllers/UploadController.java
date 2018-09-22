@@ -5,6 +5,7 @@ import com.yukoon.midautumnquiz.utils.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,10 +28,17 @@ public class UploadController {
         return "backend/share_img_upload";
     }
 
+    //后台前往诗人图片上传
+    @GetMapping("/poetimg/{id}")
+    public String toPoetImg(@PathVariable("id")Integer id, Map<String,Object> map) {
+        map.put("id",id);
+        return "backend/poet_img_upload";
+    }
+
     //后台分享缩略图上传
     @PostMapping("/shareimgupload")
     public String uploadShareImg(@RequestParam("pic")MultipartFile pic, HttpServletRequest request
-            , Integer act_id, RedirectAttributes attributes){
+            ,RedirectAttributes attributes){
         String filePath = pathConfig.getShareImgPath();
         String fileName = pic.getOriginalFilename();
         String uploadMsg = "图片上传成功!";
@@ -53,5 +61,33 @@ public class UploadController {
         }
         attributes.addFlashAttribute("uploadMsg",uploadMsg);
         return "redirect:/touploadshareimg";
+    }
+
+    //后台诗人图片上传
+    @PostMapping("/poetimgupload")
+    public String uploadPoetImg(@RequestParam("pic")MultipartFile pic, HttpServletRequest request
+            , Integer id, RedirectAttributes attributes){
+        String filePath = pathConfig.getPoetImgPath();
+        String fileName = pic.getOriginalFilename();
+        String uploadMsg = "图片上传成功!";
+        if (!FileUtil.isImg(fileName)){
+            uploadMsg = "该文件不是图片格式,请重新上传!";
+            attributes.addFlashAttribute("uploadMsg",uploadMsg);
+            return "redirect:/poetimg/" + id;
+        }
+        //重命名文件
+        fileName = "poet"+ id +".png";
+        try {
+            //上传图片
+            FileUtil.uploadFile(pic.getBytes(),filePath,fileName);
+            //压缩图片
+//            FileUtil.resizeImg(filePath+fileName,150,150);
+        }catch (Exception e) {
+            uploadMsg = "图片上传出现错误,请重新上传!";
+            attributes.addFlashAttribute("uploadMsg",uploadMsg);
+            return "redirect:/poetimg/" + id;
+        }
+        attributes.addFlashAttribute("uploadMsg",uploadMsg);
+        return "redirect:/poetimg/" + id;
     }
 }
